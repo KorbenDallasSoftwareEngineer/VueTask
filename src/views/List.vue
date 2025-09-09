@@ -1,14 +1,12 @@
 <template>
-  <div>
     <h1>Список</h1>
     <ul>
       <li v-for="item in listStore.items" :key="item.url">
-        <h2>{{ item.title }}</h2>
-        <p>{{ item.desc }}</p>
-        <a :href="item.url">{{ item.url }}</a>
+        <router-link :to="`/list/${item.url}`">
+        {{ item.title }}
+      </router-link>
       </li>
     </ul>
-  </div>
 </template>
 
 <script setup>
@@ -21,6 +19,7 @@ const listStore = useListStore();
 ul {
   list-style-type: none;
   padding: 0;
+  padding-right: 90%;
 }
 li {
   border: 1px solid #ccc;

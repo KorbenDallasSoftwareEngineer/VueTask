@@ -115,16 +115,5 @@ export const useListStore = defineStore('list', {
         this.loading = false;
       }
     },
-
-    async fetchAllItems(url) {
-      this.loading = true;
-      try {
-        const response = await fetch(url);
-        const data = await response.json();
-        this.items = data; 
-      } finally {
-        this.loading = false;
-      }
-    },
   },
 });
