@@ -1,28 +1,34 @@
 <template>
-    <div>
-        <h2>Популярные товары</h2>
-        <p v-html="productsContent"></p>
-    </div>
+  <div>
+    <h1>Список</h1>
+    <ul>
+      <li v-for="item in listStore.items" :key="item.url">
+        <h2>{{ item.title }}</h2>
+        <p>{{ item.desc }}</p>
+        <a :href="item.url">{{ item.url }}</a>
+      </li>
+    </ul>
+  </div>
 </template>
 
-<script setup> 
-import { ref } from 'vue';
+<script setup>
+import { useListStore } from '@/stores/list.js';
 
-const productsContent = ref(`
-  <p>Ознакомьтесь с нашим ассортиментом:</p>
-  <ol>
-    <li>
-      <h3>Смартфон "Galaxy Pro"</h3>
-      <p><em>Мощный процессор и камера высокого разрешения.</em></p>
-    </li>
-    <li>
-      <h3>Ноутбук "UltraBook"</h3>
-      <p><em>Тонкий, лёгкий и производительный. Идеален для работы.</em></p>
-    </li>
-    <li>
-      <h3>Наушники "Audio Pro X"</h3>
-      <p><em>Чистый звук и удобная посадка.</em></p>
-    </li>
-  </ol>
-`);
+const listStore = useListStore();
 </script>
+
+<style scoped>
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+li {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  padding: 15px;
+}
+h2 {
+  margin-top: 0;
+}
+</style>
